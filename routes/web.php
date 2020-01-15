@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('admin', 'MaisonController')->middleware('auth');
+
+Route::get('/', 'MaisonController@index')->name('accueil');
+Route::get('show/{id}','MaisonController@show')->name('produit');
